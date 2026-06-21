@@ -25,6 +25,21 @@ during the build asset step (see `.tmp-img/watermark.mjs`). Originals are resize
 | `small-kitchen-design-ideas.jpg` | Pexels photo #3935350 | https://www.pexels.com/photo/3935350/ | Pexels License |
 | `best-sofa-styles-explained.jpg` | Pexels photo #1866149 | https://www.pexels.com/photo/1866149/ | Pexels License |
 
+### Homepage hero & category covers (`src/assets/categories/`)
+
+| Asset | Source (Pexels) | Photo page (proof) | Licence |
+|---|---|---|---|
+| `hero.jpg` | Pexels photo #1668860 | https://www.pexels.com/photo/1668860/ | Pexels License |
+| `living-room.jpg` | Pexels photo #6492403 | https://www.pexels.com/photo/6492403/ | Pexels License |
+| `bedroom.jpg` | Pexels photo #279746 | https://www.pexels.com/photo/279746/ | Pexels License |
+| `kitchen.jpg` | Pexels photo #2724749 | https://www.pexels.com/photo/2724749/ | Pexels License |
+| `bathroom.jpg` | Pexels photo #6438752 | https://www.pexels.com/photo/6438752/ | Pexels License |
+| `home-office.jpg` | Pexels photo #1957478 | https://www.pexels.com/photo/1957478/ | Pexels License |
+| `diy-decor.jpg` | Pexels photo #5705090 | https://www.pexels.com/photo/5705090/ | Pexels License |
+| `home-organization.jpg` | Pexels photo #1090638 | https://www.pexels.com/photo/1090638/ | Pexels License |
+| `furniture-guides.jpg` | Pexels photo #2986011 | https://www.pexels.com/photo/2986011/ | Pexels License |
+| `australian-homes.jpg` | Pexels photo #3935333 | https://www.pexels.com/photo/3935333/ | Pexels License |
+
 Open any "Photo page" link to verify the original image and its licence — that page is your
 proof of legal commercial use for AdSense or any audit.
 
