@@ -1,0 +1,50 @@
+name: Build & Deploy to Hostinger
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}   # allows manual "Run workflow" button
+
+# Avoid overlapping deploys racing on the FTP sync-state file.
+concurrency:
+  group: ftp-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps           # Hostinger supports FTPS on port 21. If TLS errors, change to: ftp
+          port: 21
+          local-dir: ./dist/
+          # Docroot for watsonsinteriors.com.au. If the site doesn't update,
+          # the FTP account is likely jailed to the domain — change this to: ./
+          # or to: /domains/watsonsinteriors.com.au/public_html/
+          server-dir: /public_html/
+          # Don't wipe the remote first — safer on shared hosting with other sites.
+          dangerous-clean-slate: false
+          # Keep the host from deleting things it shouldn't touch.
+          exclude: |
+            **/.git*
+            **/.git*/**
