@@ -37,6 +37,8 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps           # Hostinger supports FTPS on port 21. If TLS errors, change to: ftp
           port: 21
+          timeout: 60000           # give Hostinger's FTPS more headroom (default 30s is flaky)
+          log-level: verbose       # full transfer log for debugging in the Actions output
           local-dir: ./dist/
           # Docroot for watsonsinteriors.com.au. If the site doesn't update,
           # the FTP account is likely jailed to the domain — change this to: ./
