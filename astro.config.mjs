@@ -11,6 +11,11 @@ export default defineConfig({
   trailingSlash: 'ignore',
   integrations: [sitemap()],
   build: {
-    inlineStylesheets: 'auto',
+    // Inline all CSS into each page so styling never depends on a separate
+    // file uploading correctly to shared hosting.
+    inlineStylesheets: 'always',
+    // Avoid the leading-underscore "_astro" dir — some shared-host file
+    // managers/extractors skip underscore-prefixed folders.
+    assets: 'assets',
   },
 });
