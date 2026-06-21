@@ -1,0 +1,69 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { CATEGORY_MAP } from '../consts';
+import { coverDataUri, formatDate } from '../lib/cover';
+
+interface Props {
+  title: string;
+  description?: string;
+  href: string;
+  category: string;
+  pubDate: Date;
+  readingTime?: number;
+  coverAlt: string;
+  cover?: ImageMetadata;
+  featured?: boolean;
+  loading?: 'lazy' | 'eager';
+}
+
+const {
+  title, description, href, category, pubDate,
+  readingTime, coverAlt, cover, featured = false, loading = 'lazy',
+} = Astro.props;
+
+const cat = CATEGORY_MAP[category];
+const fallback = coverDataUri(cat?.hue ?? 30, coverAlt);
+---
+
+<article class={`card a-card${featured ? ' a-card--featured' : ''}`}>
+  <a href={href} class="a-card__media">
+    {cover ? (
+      <Image src={cover} alt={coverAlt} widths={[400, 800, 1200]}
+        sizes="(max-width: 640px) 100vw, 380px" loading={loading} decoding="async" />
+    ) : (
+      <img src={fallback} alt={coverAlt} width="1200" height="800" loading={loading} decoding="async" />
+    )}
+    <span class="badge a-card__badge">{cat?.name ?? category}</span>
+  </a>
+  <div class="a-card__body">
+    <h3 class="a-card__title"><a href={href}>{title}</a></h3>
+    {featured && description && <p class="a-card__desc">{description}</p>}
+    <p class="a-card__meta">
+      <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
+      {readingTime && <span> · {readingTime} min read</span>}
+    </p>
+  </div>
+</article>
+
+<style>
+  .a-card__media { position: relative; display: block; aspect-ratio: 3 / 2; overflow: hidden; }
+  .a-card__media :global(img) { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+  .a-card:hover .a-card__media :global(img) { transform: scale(1.04); }
+  .a-card__badge { position: absolute; top: 0.8rem; left: 0.8rem; }
+  .a-card__body { padding: 1.1rem 1.2rem 1.3rem; }
+  .a-card__title { font-size: 1.18rem; margin: 0 0 0.5rem; line-height: 1.25; }
+  .a-card__title a { color: inherit; text-decoration: none; }
+  .a-card__title a:hover { color: var(--c-accent-dark); }
+  .a-card__desc { color: var(--c-muted); font-size: 0.96rem; margin: 0 0 0.7rem; }
+  .a-card__meta { font-size: 0.8rem; color: var(--c-muted); margin: 0; }
+
+  .a-card--featured { display: grid; grid-template-columns: 1.1fr 1fr; }
+  .a-card--featured .a-card__media { aspect-ratio: auto; height: 100%; min-height: 260px; }
+  .a-card--featured .a-card__title { font-size: clamp(1.4rem, 3vw, 1.9rem); font-family: var(--font-head); }
+  .a-card--featured .a-card__body { padding: clamp(1.4rem, 4vw, 2.2rem); align-self: center; }
+  @media (max-width: 640px) {
+    .a-card--featured { grid-template-columns: 1fr; }
+    .a-card--featured .a-card__media { aspect-ratio: 3 / 2; min-height: 0; }
+  }
+</style>

@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { SITE } from '../consts';
+const updated = 'June 2026';
+---
+<BaseLayout title="Terms & Conditions" description="The terms and conditions governing use of the Watsons Interiors website.">
+  <section class="section">
+    <div class="container container--narrow prose">
+      <Breadcrumbs items={[{ label: 'Terms & Conditions' }]} />
+      <h1>Terms &amp; Conditions</h1>
+      <p><em>Last updated: {updated}</em></p>
+
+      <p>Welcome to {SITE.name}. By accessing or using <strong>{SITE.domain}</strong> (the "Site"),
+      you agree to be bound by these Terms &amp; Conditions. If you do not agree, please do not use
+      the Site.</p>
+
+      <h2>Use of the Site</h2>
+      <p>You may use the Site for lawful, personal, non-commercial purposes. You agree not to:</p>
+      <ul>
+        <li>Use the Site in any way that breaches applicable laws or regulations.</li>
+        <li>Attempt to gain unauthorised access to the Site, its servers or connected systems.</li>
+        <li>Reproduce, duplicate or resell any part of the Site without our written permission.</li>
+        <li>Use automated systems to scrape or harvest content in a way that disrupts the Site.</li>
+      </ul>
+
+      <h2>Intellectual property</h2>
+      <p>All content on the Site — including articles, graphics, logos and design — is owned by or
+      licensed to {SITE.name} and is protected by copyright and other laws. You may share links to
+      our articles, but you may not republish our content as your own.</p>
+
+      <h2>Content accuracy</h2>
+      <p>Our articles are provided for general information and inspiration. While we research carefully,
+      we make no guarantees that content is complete, current or error-free. See our
+      <a href="/disclaimer">disclaimer</a> for more detail.</p>
+
+      <h2>Third-party links &amp; advertising</h2>
+      <p>The Site contains links to third-party websites and displays third-party advertising
+      (including via Google AdSense). We are not responsible for the content, products or practices of
+      third-party sites. Following external links is at your own risk.</p>
+
+      <h2>Limitation of liability</h2>
+      <p>To the fullest extent permitted by law, {SITE.name} is not liable for any direct, indirect or
+      consequential loss arising from your use of the Site or reliance on its content. Nothing in
+      these terms excludes rights you may have under the <em>Australian Consumer Law</em> that cannot
+      lawfully be excluded.</p>
+
+      <h2>Changes to these terms</h2>
+      <p>We may update these Terms from time to time. Continued use of the Site after changes are
+      posted constitutes acceptance of the revised Terms.</p>
+
+      <h2>Governing law</h2>
+      <p>These Terms are governed by the laws of Australia. Any disputes will be subject to the
+      jurisdiction of the Australian courts.</p>
+
+      <h2>Contact</h2>
+      <p>Questions about these Terms? Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+    </div>
+  </section>
+</BaseLayout>

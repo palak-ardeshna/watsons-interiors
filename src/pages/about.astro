@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { SITE } from '../consts';
+---
+<BaseLayout title="About Us" description="Learn about Watsons Interiors — Australia's home design resource hub for practical interior ideas, DIY decor and furniture guides.">
+  <section class="section">
+    <div class="container container--narrow prose">
+      <Breadcrumbs items={[{ label: 'About' }]} />
+      <h1>About Watsons Interiors</h1>
+      <p class="lede">Beautiful homes. Practical ideas. We help Australian homeowners create
+      spaces that look great and actually work for everyday life.</p>
+
+      <h2>What we do</h2>
+      <p>Watsons Interiors is an independent home design publication focused on real homes,
+      real budgets and practical improvements. Unlike glossy magazines that showcase
+      unattainable luxury, we cover ideas you can genuinely use — whether you're styling a
+      rented apartment in Melbourne, renovating a Queenslander, or organising a small space
+      on a budget.</p>
+
+      <p>Every week we publish room guides, DIY projects, styling tips and honest furniture
+      buying advice tailored to Australian living.</p>
+
+      <h2>Our mission</h2>
+      <p>To make good interior design accessible to everyone. We believe you don't need a
+      huge budget or a professional designer to create a home you love — you need clear,
+      trustworthy, well-researched ideas. That's what we set out to deliver in every article.</p>
+
+      <h2>How we create our content</h2>
+      <ul>
+        <li><strong>Research-based.</strong> We study current trends, product specs and design principles before we publish.</li>
+        <li><strong>Australian-focused.</strong> Our guides consider local climate, home styles, retailers and budgets.</li>
+        <li><strong>Practical first.</strong> If an idea isn't realistic for an everyday home, it doesn't make the cut.</li>
+        <li><strong>Independent.</strong> Our editorial opinions are our own. See our <a href="/disclaimer">disclaimer</a> for how we handle affiliate links.</li>
+      </ul>
+
+      <h2>Meet the team</h2>
+      <p>Our content is produced by <a href="/authors/watsons-team">The Watsons Interiors Team</a>,
+      a group of writers and home-design enthusiasts based in Australia.</p>
+
+      <h2>Get in touch</h2>
+      <p>Have a question, suggestion or partnership idea? We'd love to hear from you —
+      visit our <a href="/contact">contact page</a> or email
+      <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+    </div>
+  </section>
+</BaseLayout>
+<style>.lede{font-size:1.2rem;color:var(--c-muted);}</style>

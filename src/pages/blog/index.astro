@@ -1,0 +1,57 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import { CATEGORIES } from '../../consts';
+
+const articles = (await getCollection('articles', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+<BaseLayout title="All Articles" description="Browse every interior design idea, DIY project and furniture guide from Watsons Interiors.">
+  <header class="section" style="padding-bottom:1rem">
+    <div class="container">
+      <Breadcrumbs items={[{ label: 'Blog' }]} />
+      <p class="eyebrow">The Blog</p>
+      <h1>Home design ideas &amp; guides</h1>
+      <p class="lede">Practical inspiration for every room, budget and Australian home.</p>
+
+      <ul class="chips" aria-label="Categories">
+        <li><a class="chip chip--active" href="/blog">All</a></li>
+        {CATEGORIES.map((c) => (
+          <li><a class="chip" href={`/category/${c.slug}`}>{c.name}</a></li>
+        ))}
+      </ul>
+    </div>
+  </header>
+
+  <section class="section" style="padding-top:0.5rem">
+    <div class="container">
+      <div class="grid grid--3">
+        {articles.map((a, i) => (
+          <ArticleCard
+            title={a.data.title}
+            href={`/articles/${a.id}`}
+            category={a.data.category}
+            pubDate={a.data.pubDate}
+            readingTime={a.data.readingTime}
+            coverAlt={a.data.coverAlt}
+            cover={a.data.cover}
+            loading={i < 3 ? 'eager' : 'lazy'}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Newsletter />
+</BaseLayout>
+
+<style>
+  .lede { font-size: 1.15rem; color: var(--c-muted); }
+  .chips { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; margin: 1.4rem 0 0; }
+  .chip { display: inline-block; padding: 0.45rem 1rem; border-radius: 100px; background: var(--c-card); border: 1px solid var(--c-line); color: var(--c-text); font-size: 0.9rem; font-weight: 500; text-decoration: none; }
+  .chip:hover { border-color: var(--c-accent); text-decoration: none; }
+  .chip--active { background: var(--c-accent); color: #fff; border-color: var(--c-accent); }
+</style>

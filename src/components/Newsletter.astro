@@ -1,0 +1,37 @@
+---
+// Connect the action to your email provider (Mailchimp, ConvertKit, Beehiiv…).
+// Until then it posts nowhere; replace `action` with your form endpoint.
+const action = '';
+---
+<section class="newsletter section">
+  <div class="container newsletter-inner">
+    <div>
+      <p class="eyebrow">Join the list</p>
+      <h2>Get weekly home design inspiration</h2>
+      <p class="newsletter-sub">
+        Room ideas, DIY projects and honest furniture guides — straight to your inbox.
+        No spam, unsubscribe anytime.
+      </p>
+    </div>
+    <form class="newsletter-form" action={action} method="post">
+      <label class="visually-hidden" for="nl-email">Email address</label>
+      <input id="nl-email" type="email" name="email" required placeholder="you@example.com" autocomplete="email" />
+      <button class="btn btn--primary" type="submit">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<style>
+  .newsletter { background: var(--c-secondary); }
+  .newsletter-inner {
+    display: grid; grid-template-columns: 1.2fr 1fr; gap: 2rem; align-items: center;
+  }
+  .newsletter h2 { margin: 0 0 0.4rem; }
+  .newsletter-sub { color: var(--c-accent-dark); max-width: 46ch; margin: 0; }
+  .newsletter-form { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  .newsletter-form input {
+    flex: 1 1 220px; padding: 0.85rem 1.1rem; border-radius: 100px;
+    border: 1.5px solid var(--c-accent); font-size: 1rem; background: #fff; color: var(--c-text);
+  }
+  @media (max-width: 760px) { .newsletter-inner { grid-template-columns: 1fr; } }
+</style>

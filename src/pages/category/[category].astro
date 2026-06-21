@@ -1,0 +1,69 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import { CATEGORIES } from '../../consts';
+
+export async function getStaticPaths() {
+  return CATEGORIES.map((cat) => ({
+    params: { category: cat.slug },
+    props: { cat },
+  }));
+}
+
+const { cat } = Astro.props;
+const articles = (await getCollection('articles', ({ data }) => !data.draft))
+  .filter((a) => a.data.category === cat.slug)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: `${cat.name} Ideas`,
+  description: cat.description,
+};
+---
+<BaseLayout title={`${cat.name} Ideas & Guides`} description={cat.description} schema={schema}>
+  <header class="cat-hero section">
+    <div class="container">
+      <Breadcrumbs items={[{ label: cat.name }]} />
+      <p class="eyebrow">{cat.name}</p>
+      <h1>{cat.name} Ideas &amp; Guides</h1>
+      <p class="cat-intro">{cat.description}</p>
+    </div>
+  </header>
+
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      {articles.length > 0 ? (
+        <div class="grid grid--3">
+          {articles.map((a, i) => (
+            <ArticleCard
+              title={a.data.title}
+              description={a.data.description}
+              href={`/articles/${a.id}`}
+              category={a.data.category}
+              pubDate={a.data.pubDate}
+              readingTime={a.data.readingTime}
+              coverAlt={a.data.coverAlt}
+              cover={a.data.cover}
+              loading={i < 3 ? 'eager' : 'lazy'}
+            />
+          ))}
+        </div>
+      ) : (
+        <p class="empty">New {cat.name.toLowerCase()} articles are on the way — check back soon.</p>
+      )}
+    </div>
+  </section>
+
+  <Newsletter />
+</BaseLayout>
+
+<style>
+  .cat-hero { padding-bottom: 1.5rem; }
+  .cat-intro { font-size: 1.15rem; color: var(--c-muted); max-width: 60ch; }
+  .empty { color: var(--c-muted); font-size: 1.1rem; }
+</style>

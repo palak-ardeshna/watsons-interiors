@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { SITE } from '../consts';
+const updated = 'June 2026';
+---
+<BaseLayout title="Disclaimer" description="Editorial, affiliate and advertising disclaimer for Watsons Interiors.">
+  <section class="section">
+    <div class="container container--narrow prose">
+      <Breadcrumbs items={[{ label: 'Disclaimer' }]} />
+      <h1>Disclaimer</h1>
+      <p><em>Last updated: {updated}</em></p>
+
+      <h2>General information</h2>
+      <p>The information provided by {SITE.name} on <strong>{SITE.domain}</strong> is for general
+      informational and inspirational purposes only. All content is provided in good faith; however,
+      we make no representation or warranty of any kind regarding the accuracy, adequacy, validity,
+      reliability or completeness of any information on the Site.</p>
+
+      <h2>Professional advice disclaimer</h2>
+      <p>Our articles are not professional advice. Before undertaking renovations, electrical work,
+      structural changes or significant purchases, consult a qualified professional (such as a
+      licensed tradesperson, electrician, builder or interior designer). DIY projects are carried out
+      at your own risk — always follow product instructions and safety guidelines.</p>
+
+      <h2>Affiliate disclosure</h2>
+      <p>Some links on the Site are affiliate links. This means we may earn a small commission, at no
+      extra cost to you, if you click through and make a purchase. We only recommend products we
+      believe offer genuine value, and affiliate relationships never dictate our editorial opinions.
+      As an example, we may participate in programs such as the Amazon Associates Program and other
+      Australian retailer affiliate schemes.</p>
+
+      <h2>Advertising</h2>
+      <p>The Site displays advertising, including ads served by <strong>Google AdSense</strong>. These
+      ads are clearly distinguishable from editorial content. We are not responsible for the products
+      or claims made in third-party advertisements. Please review our
+      <a href="/privacy-policy">privacy policy</a> for how advertising cookies are used.</p>
+
+      <h2>Pricing &amp; availability</h2>
+      <p>Product prices, availability and specifications mentioned on the Site can change at any time.
+      Always confirm current details on the retailer's website before purchasing.</p>
+
+      <h2>External links</h2>
+      <p>The Site may contain links to external websites that are not provided or maintained by us. We
+      do not guarantee the accuracy or reliability of any information on these external sites.</p>
+
+      <h2>Contact</h2>
+      <p>If you have questions about this disclaimer, email
+      <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+    </div>
+  </section>
+</BaseLayout>

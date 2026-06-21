@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { SITE } from '../consts';
+// Replace `action` with a form endpoint (Formspree, Web3Forms, Netlify Forms, etc.).
+const action = '';
+---
+<BaseLayout title="Contact Us" description="Get in touch with the Watsons Interiors team. Questions, feedback, and partnership enquiries welcome.">
+  <section class="section">
+    <div class="container container--narrow">
+      <Breadcrumbs items={[{ label: 'Contact' }]} />
+      <h1>Contact us</h1>
+      <p class="lede">We'd genuinely love to hear from you — whether it's feedback on an
+      article, a topic request, a correction, or a partnership enquiry.</p>
+
+      <div class="contact-grid">
+        <form class="contact-form card" action={action} method="post">
+          <p class="form-row">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" required autocomplete="name" />
+          </p>
+          <p class="form-row">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required autocomplete="email" />
+          </p>
+          <p class="form-row">
+            <label for="subject">Subject</label>
+            <input id="subject" name="subject" type="text" />
+          </p>
+          <p class="form-row">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+          </p>
+          <button class="btn btn--primary" type="submit">Send message</button>
+          <p class="form-note">By submitting, you agree to our <a href="/privacy-policy">privacy policy</a>.</p>
+        </form>
+
+        <aside class="contact-aside">
+          <h2>Other ways to reach us</h2>
+          <p><strong>Email</strong><br><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+          <p><strong>Response time</strong><br>We usually reply within 2–3 business days.</p>
+          <p><strong>Follow along</strong></p>
+          <ul class="contact-social">
+            <li><a href={SITE.social.pinterest} target="_blank" rel="noopener">Pinterest</a></li>
+            <li><a href={SITE.social.instagram} target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href={SITE.social.facebook} target="_blank" rel="noopener">Facebook</a></li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .lede { font-size: 1.2rem; color: var(--c-muted); max-width: 60ch; }
+  .contact-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 2rem; margin-top: 1.5rem; align-items: start; }
+  .contact-form { padding: 1.6rem; }
+  .form-row { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 1rem; }
+  .form-row label { font-weight: 600; font-size: 0.92rem; }
+  .form-row input, .form-row textarea {
+    padding: 0.7rem 0.9rem; border: 1.5px solid var(--c-line); border-radius: 10px;
+    font: inherit; background: var(--c-bg); color: var(--c-text);
+  }
+  .form-row input:focus, .form-row textarea:focus { border-color: var(--c-accent); outline: none; }
+  .form-note { font-size: 0.82rem; color: var(--c-muted); margin: 0.8rem 0 0; }
+  .contact-aside h2 { font-size: 1.2rem; }
+  .contact-aside p { margin: 0 0 1rem; }
+  .contact-social { list-style: none; padding: 0; display: flex; gap: 1rem; }
+  @media (max-width: 760px) { .contact-grid { grid-template-columns: 1fr; } }
+</style>

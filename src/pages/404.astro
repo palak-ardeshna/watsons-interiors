@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { CATEGORIES } from '../consts';
+---
+<BaseLayout title="Page not found" noindex>
+  <section class="section text-center" style="min-height:50vh; display:grid; place-content:center;">
+    <div class="container container--narrow">
+      <p class="eyebrow">Error 404</p>
+      <h1>This room doesn't exist (yet)</h1>
+      <p class="lede">The page you're looking for may have moved. Try one of these instead:</p>
+      <div class="hero-cta" style="justify-content:center; display:flex; gap:0.8rem; flex-wrap:wrap; margin-top:1.2rem;">
+        <a href="/" class="btn btn--primary">Back home</a>
+        <a href="/blog" class="btn btn--ghost">Browse articles</a>
+      </div>
+      <ul class="chips" style="justify-content:center; list-style:none; display:flex; flex-wrap:wrap; gap:0.5rem; padding:0; margin-top:1.5rem;">
+        {CATEGORIES.slice(0, 6).map((c) => (
+          <li><a href={`/category/${c.slug}`} style="text-decoration:underline;">{c.name}</a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+<style>.lede{font-size:1.15rem;color:var(--c-muted);}</style>
