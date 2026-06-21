@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 // Update this to your production domain.
-export const SITE_URL = 'https://www.watsonsinteriors.com.au';
+export const SITE_URL = 'https://watsonsinteriors.com.au';
 
 // https://astro.build/config
 export default defineConfig({

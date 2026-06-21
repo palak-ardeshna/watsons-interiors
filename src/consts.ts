@@ -5,7 +5,7 @@
 export const SITE = {
   name: 'Watsons Interiors',
   domain: 'watsonsinteriors.com.au',
-  url: 'https://www.watsonsinteriors.com.au',
+  url: 'https://watsonsinteriors.com.au',
   tagline: 'Beautiful Homes. Practical Ideas.',
   description:
     "Australia's home design resource hub. Practical interior design ideas, room guides, DIY decor, and furniture buying advice for modern Australian living.",

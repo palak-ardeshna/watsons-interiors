@@ -5,4 +5,4 @@ Allow: /
 User-agent: Mediapartners-Google
 Allow: /
 
-Sitemap: https://www.watsonsinteriors.com.au/sitemap-index.xml
+Sitemap: https://watsonsinteriors.com.au/sitemap-index.xml
