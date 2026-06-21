@@ -5,6 +5,11 @@ const isActive = (href: string) => path === href || path.startsWith(href + '/');
 ---
 
 <header class="site-header">
+  <div class="topbar">
+    <div class="container">
+      <span>🇦🇺 Australia's home design resource — fresh room guides &amp; DIY ideas every week</span>
+    </div>
+  </div>
   <div class="container header-inner">
     <a href="/" class="brand" aria-label={`${SITE.name} home`}>
       <span class="brand-mark">W</span>
@@ -41,6 +46,19 @@ const isActive = (href: string) => path === href || path.startsWith(href + '/');
     background: rgba(245, 241, 235, 0.92);
     backdrop-filter: saturate(180%) blur(10px);
     border-bottom: 1px solid var(--c-line);
+  }
+  .topbar {
+    background: var(--c-accent);
+    color: #f5f1eb;
+    font-size: 0.8rem;
+    letter-spacing: 0.02em;
+  }
+  .topbar .container {
+    padding-block: 0.45rem;
+    text-align: center;
+  }
+  @media (max-width: 560px) {
+    .topbar { font-size: 0.72rem; }
   }
   .header-inner {
     display: flex;
